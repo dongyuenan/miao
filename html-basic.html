@@ -70,7 +70,7 @@
       <dd>豆豆</dd>
   </dl>
   <hr/>
-  <h1>Google搜素</h1>
+  <h1>Google搜索</h1>
   <form action="http://www.google.cn/" target="_blank">
     <input type="text" >
     <button type="submit">在新窗口打开搜索结果</button>
@@ -114,9 +114,85 @@
       <dd>点我上传照片，我比文件上传按钮好看</dd>
       <dt>自我介绍</dt>
         <dd>
-          <textarea>&lt;/textarea&gt;</textarea>
+          <textarea name="intro" cols="30" rows="10">&lt;/textarea&gt;</textarea>
         </dd>
   </dl>
+  <fieldset disabled>
+    <legend>这里全部禁用了</legend>
+    <input type="text">
+    <input type="text">
+    <input type="text">
+    <input type="text">
+  </fieldset>
+  <button>提交</button>
+  <button type="reset">重置</button>
+  <hr>
+  <table border="1">
+    <thead>
+      <col>
+      <col span="1" bgcolor="red">
+    <tr>
+      <th>编号</th>
+      <th>品名</th>
+      <th>进价</th>
+      <th>出价</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>aaa</td>
+      <td>a</td>
+      <td rowspan="2">a</td>
+      <td>a</td>
+    </tr>
+    <tr>
+      <td>a</td>
+      <td>a</td>
+      <!-- <td>a</td> -->
+      <td>a</td>
+    </tr>
+    <tr>
+      <td>a</td>
+      <td>a</td>
+      <td>a</td>
+      <td>a</td>
+    </tr>
+    <tr>
+      <td>a</td>
+      <td>a</td>
+      <td>a</td>
+      <td>a</td>
+    </tr>
+  </tbody>
+  </table>
+
+  <hr>
+
+  <!-- <a href="https://www.jd.com/">
+    <img src="https://drscdn.500px.org/photo/174778125/m%3D1170_k%3D1/2841ccf2a3720e8e794a6a6930f6ff2c" width="300">
+  </a> -->
+  <img usemap="#map1" width=300 src="https://drscdn.500px.org/photo/174778125/m%3D1170_k%3D1/2841ccf2a3720e8e794a6a6930f6ff2c" alt="">
+
+  <map name="map1">
+    <area shape="rect" coords="202 196 56 105" href="https://www.jd.com/" target="_blank" alt="">
+    <area shape="circle" coords="152 308 150" href="https://www.jd.com/" target="_blank" alt="">
+  </map>
+
+
+  <hr>
+
+
+  <a href="https://www.mi.com/index.html" target="farme1">小米</a> <br>
+  <!-- 如果不在a标签后面加br标签   在这一行加一个<div></div>标签也是起到一个换行的作用 -->
+  <iframe name="farme1" src="https://nodejs.org/en/" frameborder="1">
+  </iframe>
+
+  <div>aaa&nbsp;&nbsp;&nbsp;&nbsp;bbbbb</div>
+  <pre>aaa    bbbbb</pre>
+  >>>>>>>>>>>>>><<<<<<<<<<<<<< &lt;span&gt;&lt;/span&gt;
+
+
+  <div id="dibu"></div>
   </form>
 </body>
 </html>
