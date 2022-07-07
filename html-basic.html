@@ -71,8 +71,12 @@
   </dl>
   <hr/>
   <h1>Google搜索</h1>
-  <form action="http://www.google.cn/" target="_blank">
-    <input type="text" >
+    <!-- <form action="http://www.google.cn/" target="_blank">
+    <input type="text" > -->
+  <form target="_blank" action="https://www.google.com.hk/search">
+      <input type="text" name="q">
+      <input hidden type="text" name="ie" value="UTF-8">
+      <input hidden type="text" name="sourceid" value="UTF">
     <button type="submit">在新窗口打开搜索结果</button>
   </form>
   <hr/>
@@ -111,7 +115,10 @@
           <input type="datetime" name="birthtime" />
         </dd>
       <dt>照片</dt>
-      <dd>点我上传照片，我比文件上传按钮好看</dd>
+      <dd>
+        <input hidden type="file" name="avatar" id="avatar-upload">
+        <label for="avatar-upload">点我上传照片，我比文件上传按钮好看</label>
+      </dd>
       <dt>自我介绍</dt>
         <dd>
           <textarea name="intro" cols="30" rows="10">&lt;/textarea&gt;</textarea>
