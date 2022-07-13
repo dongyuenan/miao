@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    section {
+      background-color: black;
+    }
+
+    section div {
+      width: 600px;
+      margin: auto;
+      color: #ffffff;
+    }
+
+    div {
+      width: 600px;
+      margin: 20px auto;
+      /* margin: 20px 0; */
+    }
+
+    main {
+      width: 600px;
+      margin: auto;
+    }
+
+    main nav{
+      width: 180px;
+      height: 40px;
+      border: 3px solid;
+      background-color: #ffc0cb;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+    }
+
+    main nav:hover {
+      background-color: red;
+    }
+
+    nav:nth-child(n+5) {
+      margin-left: 210px;
+      /* margin-top: -50px; */
+    }
+
+    nav:nth-child(n+9) {
+      margin-left: 420px;
+    }
+
+  nav:nth-child(4n+5) {
+    margin-top: -220px;
+  }
+
+  ul {
+    width: 600px;
+    margin: auto;
+    overflow: hidden;
+  }
+
+  ul li {
+    width: 600px;
+    /* padding-left: 0; */
+    border-bottom: 1px dotted;
+    list-style: none;
+    margin: auto;
+  }
+
+  ul li:nth-last-child(1) {
+    margin-bottom: -1px;
+  }
+
+
+  p {
+    margin-top: 20px ;
+    background-color: #ee8aee;
+    text-align: center;
+  }
+  </style>
+</head>
+<body>
+  <section>
+    <div>hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果</div>
+  </section>
+
+  <div>页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px</div>
+
+  <div class="sanceng">
+  <main>
+    <nav>宽180高40(包含边框)</nav>
+    <nav>水平间隙30px</nav>
+    <nav>垂直间隙15px</nav>
+    <nav>边框宽度3px</nav>
+    <nav>产品</nav>
+    <nav>产品</nav>
+    <nav>产品</nav>
+    <nav>产品</nav>
+    <nav>产品</nav>
+    <nav>产品</nav>
+    <nav>产品</nav>
+    <nav>产品</nav>
+  </main>
+
+  <ul>
+    <li>link</li>
+    <li>link</li>
+    <li>link</li>
+    <li>link</li>
+    <li>link</li>
+  </ul>
+</div>
+
+  <p>©版权所有 <br>
+    本页所有布局均使用块元素</p>
+</body>
+</html>

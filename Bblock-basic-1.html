@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    <style>
+      body {
+        margin: 20px;
+      }
+
+      .a {
+        min-width: 600px;
+        background-color: red;
+      }
+
+      .a div {
+        width: 600px;
+        margin: auto;
+        /* background-color: red;  */
+      }
+
+      .b {
+        max-width: 600px;
+        border: 2px solid;
+        padding: 10px;
+        margin: 10px auto;
+        /* margin-top: 20px; */
+        /* margin-bottom: 20px; */
+        box-sizing: border-box;
+      }
+
+      .b .one {
+        height: 4em;
+        margin: auto;
+        overflow: auto;
+      }
+
+      .b .two {
+        height: 50px;
+        background-color: #ee82ee;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        /* margin: 10px; */
+      }
+      .b .two:hover {
+        /* margin: 0 10px; */
+        margin-left: -10px;
+        margin-right: -10px;
+      }
+
+      .b .three {
+        height: 4em;
+        overflow: auto;
+      }
+
+      .c {
+        width: 0;
+        height: 0;
+        margin: auto;
+        border: 50px solid red;
+        border-color: transparent transparent orange transparent;
+      }
+  </style>
+</head>
+<body>
+  <section class="a">
+    <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt at, ea natus cupiditate assumenda deserunt ex maxime dignissimos. Soluta laudantium id architecto fugit labore fuga consequatur placeat laboriosam dolorum! Incidunt!</div>
+  </section>
+
+  <section class="b">
+    <div class="one">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae sapiente voluptas officiis, praesentium, nemo iure cumque nihil, facere hic asperiores dicta commodi magni, voluptates eaque esse atque nesciunt! Cupiditate, modi.</div>
+    <div class="two"></div>
+    <div class="three">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos modi accusantium deleniti consequuntur, enim nulla voluptatum qui ducimus esse rem eius eligendi consequatur sint. Sunt ut, est iusto neque numquam. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam animi perspiciatis eos, molestias provident, quae ullam! Obcaecati suscipit optio labore iusto veniam facere, amet officiis, eveniet voluptatibus molestiae, dignissimos dolor!
+    </div>
+  </section>
+
+  <div class="c"></div>
+</body>
+</html>
