@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .imgs {
+      width: 600px;
+      height: 500px;
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+    }
+
+    .imgs img {
+      width: 100%;
+      height: 100%;
+      /* opacity: 0; */
+      transition: 1s;
+      position: absolute;
+      left: 100%;
+    }
+
+    section {
+      position: relative;
+    }
+
+    section input {
+      position: relative;
+      top: 480px;
+      z-index: 5;
+      display: none;
+    }
+
+    .lab {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      z-index: 5;
+    }
+
+    .lab label {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin: 3px;
+      background-color: black;
+    }
+
+    .lab label:hover {
+      background-color: red;
+    }
+
+    input:nth-child(1):checked ~ .imgs img:nth-child(1),
+    input:nth-child(2):checked ~ .imgs img:nth-child(2),
+    input:nth-child(3):checked ~ .imgs img:nth-child(3),
+    input:nth-child(4):checked ~ .imgs img:nth-child(4) {
+      /* opacity: 1; */
+      left: 0;
+    }
+
+    input:nth-child(1):checked ~ .lab label:nth-child(1),
+    input:nth-child(2):checked ~ .lab label:nth-child(2),
+    input:nth-child(3):checked ~ .lab label:nth-child(3),
+    input:nth-child(4):checked ~ .lab label:nth-child(4) {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <section>
+      <input type="radio" name="radio1" id="r1" checked>
+      <input type="radio" name="radio1" id="r2" >
+      <input type="radio" name="radio1" id="r3" >
+      <input type="radio" name="radio1" id="r4" >
+
+    <div class="imgs">
+      <img src="https://ts1.cn.mm.bing.net/th/id/R-C.f9576e4a70c46344ce26cafe7794d25e?rik=OUjCwSlxVSy6ZQ&riu=http%3a%2f%2fn.sinaimg.cn%2fsinacn20119%2f266%2fw640h426%2f20190414%2f31a0-hvscktf7630738.jpg&ehk=B9CJmRr7NxfLZ1AytqwVuqBlaXTraocF4qe9o6SwyN0%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1" alt="">
+      <img src="https://pic3.zhimg.com/v2-3a2aca3074ea0e5809346aeca49da793_1440w.jpg?source=172ae18b" alt="">
+      <img src="https://tr-osdcp.qunarzz.com/tr-osd-tr-space/img/571362233e715b877569d0c5e9b6e91a.jpg_r_1360x1360x95_69b2bdf8.jpg" alt="">
+      <img src="https://ts1.cn.mm.bing.net/th/id/R-C.782debb20657c0e89bc2699b73a665b0?rik=x%2brtaa30FF2YzA&riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50080%2f5511.jpg_wh1200.jpg&ehk=lh0x94N5SCsgJLG2rdGBqzheBrhUTJ14tDBmceAsw38%3d&risl=&pid=ImgRaw&r=0" alt="">
+    </div>
+
+    <div class="lab">
+      <label for="r1"></label>
+      <label for="r2"></label>
+      <label for="r3"></label>
+      <label for="r4"></label>
+    </div>
+  </section>
+</body>
+</html>

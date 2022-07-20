@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    label {
+      display: inline-block;
+      width: 200px;
+      height: 100px;
+      border-radius: 50px;
+      margin: 0;
+      padding: 0;
+      border: 3px solid;
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+    }
+
+    label input {
+      visibility: hidden;
+    }
+
+    label input::after {
+      content: '';
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid;
+      box-sizing: border-box;
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      visibility: visible;
+      background-color: rgb(255, 255, 255);
+    }
+
+    label input:checked::after {
+      position: absolute;
+      left: 115px;
+      transition: .5s linear;
+    }
+
+    label input::before {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      visibility: visible;
+    }
+
+    label input:checked::before {
+      background-color: #30f34b;
+      transition: 2s;
+    }
+  </style>
+</head>
+
+<body>
+  <label for="a">
+    <input type="checkbox" id="a">
+  </label>
+</body>
+<!-- <script src="less.js"></script> -->
+
+</html>
