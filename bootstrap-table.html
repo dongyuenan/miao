@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/less">
+    table {
+      width: 750px;
+      height: 170px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      tr {
+        border-bottom: 2px solid rgb(222, 226, 230);
+        &:nth-child(1) {
+          font-weight: bold;
+          color: block;
+        }
+        td {
+          padding: .5em .5em;
+          &:nth-child(1) {
+            font-weight: bold;
+            color: block;
+          }
+        }
+      }
+    }
+
+    .table {
+      tr:nth-child(1) {
+        font-weight: bold;
+        color: block;
+      }
+      tr td:nth-child(1) {
+          font-weight: bold;
+          color: block;
+        }
+    }
+
+    .table-sm {
+      tr * {
+        padding: 0 .5em .5em 0;
+      }
+    }
+
+    .table-striped {
+      tr:nth-child(2n) {
+        background-color: rgb(242,242,242);
+      }
+    }
+
+    .table-hover {
+      tr:nth-child(n+2):hover {
+        background-color: rgb(236, 236, 236);
+      }
+    }
+
+    .table-bordered {
+      tr td {
+        border: 2px solid rgb(222, 226, 230);
+      }
+      tr:nth-child(4) td:nth-child(2) {
+        colspan: 2;
+      }
+    }
+
+    .table-borderless {
+      tr,tr td {
+        border: 0px;
+      }
+    }
+
+    .table-dark {
+      tr td {
+        background-color: rgb(33,37,41);
+        /* border-bottom-color: rgb(33,37,41); */
+        color: rgb(255, 255, 249);
+      /* border-spacing: 0px; */
+      }
+    }
+
+</style>
+</head>
+
+<body>
+  <table class="">
+    <tr>
+      <td>#</td>
+      <td>First</td>
+      <td>Last</td>
+      <td>Handle</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Larry the Bird</td>
+      <td></td>
+      <td>@twitter</td>
+    </tr>
+  </table>
+</body>
+<script src="less.js"></script>
+
+</html>
