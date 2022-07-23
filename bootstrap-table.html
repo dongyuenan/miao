@@ -14,29 +14,20 @@
       border-collapse: collapse;
       tr {
         border-bottom: 2px solid rgb(222, 226, 230);
-        &:nth-child(1) {
-          font-weight: bold;
-          color: block;
-        }
         td {
           padding: .5em .5em;
-          &:nth-child(1) {
-            font-weight: bold;
-            color: block;
-          }
+        }
+        th {
+          padding: .5em .5em;
+          text-align: left;
         }
       }
     }
 
     .table {
-      tr:nth-child(1) {
-        font-weight: bold;
-        color: block;
+      tr th {
+        text-align: left;
       }
-      tr td:nth-child(1) {
-          font-weight: bold;
-          color: black;
-        }
     }
 
     .table-sm {
@@ -46,13 +37,13 @@
     }
 
     .table-striped {
-      tr:nth-child(2n) {
-        background-color: rgb(242,242,242);
+      tbody tr:nth-child(odd){
+      background-color: rgb(242,242,242);
       }
     }
 
     .table-hover {
-      tr:nth-child(n+2):hover {
+      tbody tr:hover {
         background-color: rgb(236, 236, 236);
       }
     }
@@ -70,12 +61,14 @@
     }
 
     .table-dark {
-      tr td {
+      tr {
         background-color: rgb(33,37,41);
-        /* border-bottom-color: rgb(33,37,41); */
+        border-bottom-color: rgb(55, 59, 62);
         color: rgb(255, 255, 249);
-      /* border-spacing: 0px; */
       }
+      tbody tr:hover {
+          background-color: rgb(50, 53, 57);
+        }
     }
 
 </style>
@@ -83,26 +76,28 @@
 
 <body>
   <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Handle</th>
+      </tr>
+    </thead>
     <tr>
-      <td>#</td>
-      <td>First</td>
-      <td>Last</td>
-      <td>Handle</td>
-    </tr>
-    <tr>
-      <td>1</td>
+      <th>1</th>
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>Larry the Bird</td>
       <td></td>
       <td>@twitter</td>
@@ -110,53 +105,56 @@
   </table>
 
   <table class="table-sm">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Handle</th>
+      </tr>
+    </thead>
     <tr>
-      <td>#</td>
-      <td>First</td>
-      <td>Last</td>
-      <td>Handle</td>
-    </tr>
-    <tr>
-      <td>1</td>
+      <th>1</th>
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>Larry the Bird</td>
       <td></td>
       <td>@twitter</td>
     </tr>
   </table>
-
   <table class="table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Handle</th>
+      </tr>
+    </thead>
     <tr>
-      <td>#</td>
-      <td>First</td>
-      <td>Last</td>
-      <td>Handle</td>
-    </tr>
-    <tr>
-      <td>1</td>
+      <th>1</th>
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>Larry the Bird</td>
       <td></td>
       <td>@twitter</td>
@@ -164,26 +162,28 @@
   </table>
 
   <table class="table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Handle</th>
+      </tr>
+    </thead>
     <tr>
-      <td>#</td>
-      <td>First</td>
-      <td>Last</td>
-      <td>Handle</td>
-    </tr>
-    <tr>
-      <td>1</td>
+      <th>1</th>
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>Larry the Bird</td>
       <td></td>
       <td>@twitter</td>
@@ -191,26 +191,28 @@
   </table>
 
   <table class="table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Handle</th>
+      </tr>
+    </thead>
     <tr>
-      <td>#</td>
-      <td>First</td>
-      <td>Last</td>
-      <td>Handle</td>
-    </tr>
-    <tr>
-      <td>1</td>
+      <th>1</th>
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td colspan="2">Larry the Bird</td>
       <!-- <td></td> -->
       <td>@twitter</td>
@@ -218,53 +220,57 @@
   </table>
 
   <table class="table-borderless">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Handle</th>
+      </tr>
+    </thead>
     <tr>
-      <td>#</td>
-      <td>First</td>
-      <td>Last</td>
-      <td>Handle</td>
-    </tr>
-    <tr>
-      <td>1</td>
+      <th>1</th>
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>Larry the Bird</td>
       <td></td>
       <td>@twitter</td>
     </tr>
   </table>
 
-  <table class="table-dark">
+  <table class="table-dark table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>First</th>
+        <th>Last</th>
+        <th>Handle</th>
+      </tr>
+    </thead>
     <tr>
-      <td>#</td>
-      <td>First</td>
-      <td>Last</td>
-      <td>Handle</td>
-    </tr>
-    <tr>
-      <td>1</td>
+      <th>1</th>
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>Larry the Bird</td>
       <td></td>
       <td>@twitter</td>
