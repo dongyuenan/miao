@@ -1,4 +1,3 @@
-
 <script type="x" id="ch0103/01">
   var A = Number(prompt('请输入A'))
   var B = Number(prompt('请输入B'))
@@ -145,7 +144,7 @@
   var a1 = Number(prompt())
   var a2 = Number(prompt())
   var n = Number(prompt())
-  var an = a1 + (n - a1) * (a2 -a1)
+  var an = a1 + (n - 1) * (a2 -a1)
   console.log(an)
 </script>
 
@@ -188,9 +187,14 @@
   }
 </script>
 
-<script type="" id="ch0104/04">
-
-
+<script type="X" id="ch0104/04">
+  var str = prompt('请输入一个字符')
+  var num = str.charCodeAt(0)
+  if (num % 2 == 1){
+    console.log('YES')
+  } else {
+    console.log('NO')
+  }
 </script>
 
 
@@ -204,4 +208,200 @@
   } else {
     console.log('<')
   }
+</script>
+
+<script type="x" id="ch0104/06">
+  var x = prompt()
+  if (x > 10 && x < 100){
+    console.log(1)
+  } else {
+    console.log('0')
+  }
+</script>
+
+<script type="x" id="ch0104/07">
+  var x = prompt()
+  var y = prompt()
+  if (x >= 10 || y >= 20){
+    console.log(1)
+  } else {
+    console.log(0)
+  }
+</script>
+
+<script type="x" id="ch0104/08">
+  var x = prompt()
+  if (x % 15 == 0){
+    console.log('YES')
+  } else {
+    console.log('NO')
+  }
+</script>
+
+<script type='' id="ch0104/09">
+  var a = prompt()
+  if (a % 3 == 0 && a % 5 == 0 && a % 7 == 0) {
+    console.log('3', '5', '7')
+  } else if (a % 3 == 0 && a % 5 == 0) {
+    console.log('3', '5')
+  } else if (a % 5 == 0 && a % 7 == 0) {
+    console.log('5', '7')
+  } else if (a % 3 == 0 && a % 7 == 0) {
+    console.log('3', '7')
+  } else if (a % 3 == 0 || a % 5 == 0 || a % 7 == 0) {
+    console.log('a')
+  } else {
+    console.log('n')
+  }
+</script>
+
+<script type="x" id="ch0104/10">
+  var x = prompt()
+  var y = prompt()
+  if (x < 60 || y < 60){
+    console.log(1)
+  } else {
+    console.log(0)
+  }
+</script>
+
+<script type="x" id="ch0104/11">
+  var date = prompt()
+  if (date == 1 || date == 3 || date == 5){
+    console.log('NO')
+  } else {
+    console.log('YES')
+  }
+</script>
+
+<script type="x" id="ch0104/12">
+  var S = Number(prompt())
+  var t1 = S / 3 + 27 +23
+  var t2 = S / 1.2
+  if (t1 < t2){
+    console.log('Bike')
+  } else if (t1 > t2) {
+    console.log('Walk')
+  } else {
+    console.log('All')
+  }
+</script>
+
+<script type="x" id="ch0104/13">
+  var x = Number(prompt())
+  var y1 = -x + 2.5
+  var y2 = 2 - 1.5 * (x - 3)*(x - 3)
+  var y3 = x / 2 - 1.5
+  if (x >= 0 && x < 5) {
+    console.log(y1.toFixed(3))
+  } else if (x >= 5 && x < 10){
+    console.log(y2.toFixed(3))
+  } else if (x >= 10 && x < 20){
+    console.log(y3.toFixed(3))
+  }
+</script>
+
+<script type="x" id="ch0104/14">
+  var weight = Number(prompt('重量'))
+  var str = prompt('是否加急')
+  var weightBig = Math.ceil((weight - 1000) / 500) * 4 + 8
+  if (weight <= 1000 && str == 'n'){
+    console.log(8)
+  } else if (weight <= 1000 && str == 'y') {
+    console.log(8 + 5)
+  } else if (weight > 1000 && str == 'n') {
+    console.log(weightBig)
+  } else if (weight > 1000 && str == 'y') {
+    console.log(weightBig + 5)
+  }
+</script>
+
+<script type="x" id="ch0104/15">
+  var x1 = Number(prompt())
+  var x2 = Number(prompt())
+  var x3 = Number(prompt())
+  if (x1 > x2 && x1 > x3) {
+    console.log(x1)
+  } else if (x2 > x1 && x2 > x3) {
+    console.log(x2)
+  } else if (x3 > x1 && x3 > x2) {
+    console.log(x3)
+  }
+</script>
+
+<script type="x" id="ch0104/16">
+  var a = Number(prompt())
+  var b = Number(prompt())
+  var c = Number(prompt())
+  if (a + b > c){
+    console.log('yes')
+  } else {
+    console.log('no')
+  }
+</script>
+
+<script type="x" id="ch0104/17">
+  var a = Number(prompt('输入年份'))
+  if (a % 4 == 0 && a % 100 != 0 || a % 400 == 0){
+    console.log('Y')
+  } else {
+    console.log('N')
+  }
+</script>
+
+<script type="x" id="ch0104/18">
+  var x = Number(prompt())
+  var y = Number(prompt())
+  if (x >= -1 && x <= 1 && y >= -1 && y <= 1){
+    console.log('yes')
+  } else {
+    console.log('no')
+  }
+</script>
+
+<script type="x" id="ch0104/19">
+  var x = Number(prompt())
+  var y = Number(prompt())
+  var str = prompt('输入运算符号')
+  if (x + y == 0 || x - y == 0 || x * y == 0 || x / y == 0) {
+    console.log('Divided by zero!')
+  } else if (str != '+' && str != '-' && str != '*' && str != '/') {
+    console.log('Invalid operator!')
+  } else if (str == '+') {
+    console.log(x + y)
+  } else if (str == '-') {
+    console.log(x - y)
+  } else if (str == '*') {
+    console.log(x * y)
+  } else if (str == '/') {
+    console.log(x / y)
+  }
+</script>
+
+<script type="x" id="ch0104/20">
+  var a = Number(prompt())
+  var b = Number(prompt())
+  var c = Number(prompt())
+  var dalta = b * b - 4 * a * c
+  var w = (-b / (2 * a)).toFixed(5)
+  var r = (Math.sqrt(4 * a * c - b * b) / (2 * a)).toFixed(5)
+  var x1 = ((-b + Math.sqrt(dalta)) / (2 * a)).toFixed(5)
+  var x2 = ((-b - Math.sqrt(dalta)) / (2 * a)).toFixed(5)
+  if (dalta == 0) {
+    console.log('x1 = x2 = ' + x1)
+  } else if (dalta > 0) {
+    console.log('x1 = ' + x1)
+    console.log('x2 = ' + x2)
+  } else if (dalta < 0) {
+    console.log('x1 = ' + w + '+' + r + 'i')
+    console.log('x2 = ' + w + '-' + r + 'i')
+  }
+</script>
+
+<script type="x" id="ch0104/21">
+  var n = Number(prompt())
+  var x = Number(prompt())
+  var y = Number(prompt())
+  var result = n - Math.ceil(y / x)
+  console.log(result)
 </script>
