@@ -675,6 +675,7 @@
   console.log(sum)
 </script>
 
+
 <script type="x" id="ch0105/18">
   var n = +prompt()
   var baseTotal = +prompt()
@@ -1286,10 +1287,85 @@
   }
 </script> -->
 
-<script type="x" id="weekday">
-  var near = +prompt()
+<script id="weekday">
+
+  var year = +prompt()
   var month = +prompt()
-  var monday = 1
+
+  function isLeapYear(year) {
+    if (year % 400 == 0) {
+      return true
+    }
+    if (year % 100 == 0) {
+      return false
+    }
+    if (year % 4 == 0) {
+      return true
+    }
+    return false
+  }
+
+  // 获取某年某月有多少天
+ /*  function getMonthDay(year, month) {
+    switch (month) {
+      case 2:
+        if (isLeapYear(year)) {
+          return 29
+        } else {
+          return 28
+        }
+      case 1:
+      case 3:
+      case 5:
+      case 7:
+      case 8:
+      case 10:
+      case 12:
+        return 31
+      default:
+        return 30
+    }
+  } */
+
+  function weekday(year, month) {
+    var days = 0
+    for (var y = 1; y < year; y++) {
+      if (!isLeapYear(y)) {
+        days += 365
+      } else {
+        days += 366
+      }
+    }
+    for (var m = 1; m < month; m++) {
+      if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {
+        days += 31
+      } else {
+        if (m == 2) {
+          if (isLeapYear(y)) {
+            days += 29
+          } else {
+            days += 28
+          }
+        } else {
+          days += 30
+        }
+      }
+    }
+    days++ // 加上当月的第一天
+    return (days ) % 7
+  }
+  console.log(weekday(year, month))
+
+/*   function weekday(year, month) {
+    var y = year - 1
+    var days = y * 365 + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400)
+    for (var m = 1; m < month; m++) {
+      days += getMonthDay(year, m)
+    }
+    days++ // 加上当月的第一天
+    return days % 7
+  } */
+
 </script>
 
 
@@ -1349,7 +1425,59 @@
   }
 </script>
 
-<script type='' id="primes">
+<script type='x' id="prime">
+
+  // 判断n是否是素数，是的话返回true，不是的话返回false
+  function isPrime(n) {
+    // 用i遍历2到n-1
+    for (var i = 2; i < n; i++) {
+      if (n % i == 0) {
+        return false
+      }
+    }
+    return true
+  }
+
+  // 判断n是否是素数，是的话返回true，不是的话返回false
+  function isPrime(n) {
+    // 用i遍历2到n/2，因为大于n/2的数不可能整除n
+    var end = n / 2
+    for (var i = 2; i <= end; i++) {
+      if (n % i == 0) {
+        return false
+      }
+    }
+    return true
+  }
+
+  // 判断n是否是素数，是的话返回true，不是的话返回false
+  function isPrime(n) {
+    if (n < 2) {
+      return false
+    }
+    // 用i遍历2到根号n，因为如果根号n以内没有n的因子
+    // 那么根号n以上也必然没有，不用再一个个试了
+    var end = Math.sqrt(n)
+    for (var i = 2; i <= end; i++) {
+      if (n % i == 0) {
+        return false
+      }
+    }
+    return true
+  }
+
+
+  var n = Number(prompt())
+
+  if (isPrime(n)) {
+    console.log("YES")
+  } else {
+    console.log("NO")
+  }
+
+</script>
+
+<script type='x' id="primes">
   for (var i = 2; i <= 100; i++) {
     var a = true
     for (var j = 2; j < i; j++) {
@@ -1370,45 +1498,120 @@
   console.log(result)
 </script>
 
+<script id="itob">
+  function numberToChar(ge) {
+    var c = ''
+    if (ge == 0) {
+      c = '0'
+    }
+    if (ge == 1) {
+      c = '1'
+    }
+    if (ge == 2) {
+      c = '2'
+    }
+    if (ge == 3) {
+      c = '3'
+    }
+    if (ge == 4) {
+      c = '4'
+    }
+    if (ge == 5) {
+      c = '5'
+    }
+    if (ge == 6) {
+      c = '6'
+    }
+    if (ge == 7) {
+      c = '7'
+    }
+    if (ge == 8) {
+      c = '8'
+    }
+    if (ge == 9) {
+      c = '9'
+    }
+    return c
+  }
+
+  var n = Number(prompt())
+
+  function itob(n) {
+    var str = ''
+    do {
+      var ge = n % 10
+      str = numberToChar(ge) + str
+      n = (n - ge) / 10
+    } while (n > 0)
+
+    return str
+  }
+  console.log(itob(n))
+</script>
+
 
 <script type='' id="lcf&lcm">
-  var x = +prompt()
-  var y = +prompt()
-  var commonMax = 1
-  var commonMin = 1
-  if (x < y) {
-    for (var i = 2; i <= x; i++) {
-      var a = x % i
-      var b = y % i
-      if (a == 0 && b == 0) {
 
+  var m = Number(prompt())
+  var n = Number(prompt())
+
+  function largestCommonFactor(m, n) {
+
+    // 最大公约数
+    var min = m > n ? n : m
+    // 从较小的数开始向下尝试
+    // 如果遇到任何一个能同时被m和n整除的数，则就是答案
+    for (var i = min; i >= 1; i--) {
+      if (m % i == 0 && n % i == 0) {
+        return i
       }
     }
   }
 
+  function littlestCommonMultiple(m, n) {
+    // 最小公倍
+    return m * n / largestCommonFactor(m, n)
+  }
+
+  console.log(largestCommonFactor(m, n))
+  console.log(littlestCommonMultiple(m, n))
 </script>
 
-<script type='' id="sqrt">
+<!-- <script type='' id="sqrt">
   var n = Number(prompt())
   var result = Math.sqrt(n)
   console.log(result.toFixed(3))
-</script>
+</script> -->
 
 
-<script id="lcf&lcm">
-  var m = Number(prompt())
+
+<!-- 使用二分法验证sqrt -->
+<script type='' id="sqrt">
+
   var n = Number(prompt())
-  var a = Math.min(m, n)
-  var b = Math.max(m, n)
-  var factor = 1
-  var product = 1
-  var c = 0
-  for (var i = 2; i <= a; i++) {
-    if (m % i == 0 && n % i == 0) {
-      factor = factor * i
+
+  function sqrt(n) {
+    var low = 0
+    var high = Math.max(n, 2)
+
+    while (high - low > 0.000000001) {
+      var middle = (low + high) / 2
+
+      //如果middle大于根号n
+      if (middle * middle > n) {
+        //说明根号n在0到middle之间
+        high = middle
+
+      //如果middle小于根号n
+      } else if (middle * middle < n) {
+        //说明根号n在middle和high之间
+        low = middle
+      } else if (middle * middle == n) {
+        return middle
+      }
     }
-    product = factor * (a / factor) * (b / factor)
+    return (low + high) / 2
   }
-  console.log(factor)
-  console.log(product)
+
+  console.log(sqrt(n).toFixed(3))
 </script>
