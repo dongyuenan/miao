@@ -336,9 +336,72 @@ var dongyuenan = {
   unionBy:
     function (arrays, iteratee) {
 
-    }
+    },
 
+  uniq:
+    function (ary) {
+      var result = []
+      var map = {}
+      for (var i = 0; i < ary.length; i++) {
+        var num = ary[i]
+        if (!(map[num] in map)) {
+          map[num] = 0
+          result.push(num)
+        }
+        map[num]++
+      }
+      return result
+    },
 
+  uniqBy:
+    function (ary, iteratee) {
+
+    },
+
+  unzip:
+    function (ary) {
+
+    },
+
+  without:
+    function (ary, ...values) {
+      var result = []
+      for (var i = 0; i < ary.length; i++) {
+        if (values.indexOf(ary[i]) === -1) {
+          result.push(ary[i])
+        }
+      }
+      return result
+    },
+
+  xor:
+    function (...arrays) {
+      var result = []
+      var temp = []
+      var map = {}
+      for (var i = 0; i < arrays.length; i++) {
+        for (var j = 0; j < arrays[i].length; j++) {
+          var num = arrays[i][j]
+          if (!(num in map)) {
+            map[num] = 0
+            temp.push(num)
+          }
+          map[num]++
+        }
+      }
+
+      for (var k = 0; k < temp.length; k++) {
+        if (map[temp[k]] === 1) {
+          result.push(temp[k])
+        }
+      }
+      return result
+    },
+
+  zip:
+    function (...arrays) {
+
+    },
 
 
 
