@@ -208,8 +208,7 @@ var dongyuenan = {
           }
         }
       } else if (fromIndex < 0) {
-        var afterNum = Math.abs(fromIndex)
-        for (var i = ary.length - afterNum; i >= 0; i--) {
+        for (var i = ary.length + fromIndex; i < ary.length; i++) {
           if (ary[i] == value) {
             return i
           }
@@ -239,9 +238,108 @@ var dongyuenan = {
     },
 
   intersection:
-    function (...ary) {
+    function (...arrays) {
+      var res = []
+      var obj = {}
+      for (var i = 0; i < arrays.length; i++) {
+        for (var j = 0; j < arrays[i].length; j++) {
+          if (!(obj[arrays[i][j]]) in obj) {
+            obj[arrays[i][j]] = 0
+          }
+          obj[arrays[i][j]]++
+        }
+      }
+
+      for (var key in obj) {
+        if (obj[key] > 1) {
+          res.push(+key)
+        }
+      }
+      return res
+    },
+
+  join:
+    function (ary, separator = ',') {
+      var str = ''
+      for (var i = 0; i < ary.length; i++) {
+        str = str + ary[i] + separator
+      }
+      str = str.slice(0, str.length - 1)
+      return str
+    },
+
+  last:
+    function (ary) {
+      return ary[ary.length - 1]
+    },
+
+  pull:
+    function (ary, ...value) {
+      var result = []
+      var val = [...value]
+      for (var i = 0; i < ary.length; i++) {
+        if (val.indexOf(ary[i]) === -1) {
+          result.push(ary[i])
+        }
+      }
+      return result
+    },
+
+  reverse:
+    function (ary) {
+      var i = 0
+      var j = ary.length - 1
+      while (i < j) {
+        var temp = ary[i]
+        ary[i] = ary[j]
+        ary[j] = temp
+        i++
+        j--
+      }
+      return ary
+    },
+
+  sortedIndex:
+    function (ary, value) {
+      var i = 0
+      var j = ary.length - 1
+      while (i <= j) {
+        if (ary[i] == value) {
+          return i
+        } else if (ary[j] == value) {
+          return j
+        } else if (value > ary[i] && value < ary[j]) {
+          i++
+          j--
+        }
+      }
+      return i
+    },
+
+  union:
+    function (...arrays) {
+      var result = []
+      var map = {}
+      for (var i = 0; i < arrays.length; i++) {
+        for (var j = 0; j < arrays[i].length; j++) {
+          var num = arrays[i][j]
+          if (!(map[num] in map)) {
+            map[num] = 0
+            result.push(num)
+          }
+          map[num]++
+        }
+      }
+      return result
+    },
+
+  unionBy:
+    function (arrays, iteratee) {
 
     }
+
+
+
 
 
 
