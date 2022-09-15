@@ -1,6 +1,7 @@
 
 var dongyuenan = {
 
+  /** 数组函数 */
   chunk:
     function (array, size = 1) {
       var res = []
@@ -151,7 +152,7 @@ var dongyuenan = {
 
   flattenDeep:    /**递归为一维数组 */
     function (ary) {
-      return this.flattenDepth(ary)
+      return this.flattenDepth(ary, Infinity)
     },
 
   flattenDepth:   /**根据 depth 递归减少 array 的嵌套层级 */
@@ -235,23 +236,24 @@ var dongyuenan = {
 
   intersection:
     function (...arrays) {
-      var res = []
-      var obj = {}
-      for (var i = 0; i < arrays.length; i++) {
-        for (var j = 0; j < arrays[i].length; j++) {
-          if (!(obj[arrays[i][j]]) in obj) {
-            obj[arrays[i][j]] = 0
+      var result = []
+      var flag = 1
+
+      for (var i = 0; i < arrays[0].length; i++) {
+        for (var j = 1; j < arrays.length; j++) {
+          if (arrays[j].indexOf(arrays[0][i]) == -1) {
+            flag = 0
+            break
           }
-          obj[arrays[i][j]]++
+        }
+        if (flag == 0) {
+          flag = 1
+        } else if (flag == 1) {
+          result.push(arrays[0][i])
         }
       }
 
-      for (var key in obj) {
-        if (obj[key] > 1) {
-          res.push(+key)
-        }
-      }
-      return res
+      return result
     },
 
   join:
@@ -356,7 +358,18 @@ var dongyuenan = {
 
   unzip:
     function (ary) {
-
+      var result = []
+      var temp = []
+      var a = ary.length
+      var b = ary[0].length
+      for (var i = 0; i < b; i++) {
+        for (var j = 0; j < a; j++) {
+          temp.push(ary[j][i])
+        }
+        result.push(temp)
+        temp = []
+      }
+      return result
     },
 
   without:
@@ -400,6 +413,28 @@ var dongyuenan = {
     },
 
 
+
+  /** 集合函数 */
+  countBy:
+    function (collection, iteratee = identity) {
+
+    },
+
+  ervey:
+    function (collection, predicate = identity) {
+      var len = collection.length
+      for (var i = 0; i < len; i++) {
+        if (predicate(ary[i], index, ary) == false) {
+          return false
+        }
+      }
+      return true
+    },
+
+  filter:
+    function (collection, predicate = identity) {
+
+    }
 
 
 
