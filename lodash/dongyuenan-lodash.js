@@ -461,7 +461,7 @@ var dongyuenan = {
       var tempArray = []
       var len = collection.length
       for (var i = 0; i < len; i++) {
-        tempArray.push(predicate(collection[i], index, collection))
+        tempArray.push(predicate(collection[i], i, collection))
         result.push(...tempArray)
         tempArray = []
       }
