@@ -417,10 +417,24 @@ var dongyuenan = {
   /** 集合函数 */
   countBy:
     function (collection, iteratee = identity) {
+      var map = {}
+      if (typeof iteratee === 'string') {
+        var tempArray = collection.map(it => it[iteratee])
+      } else if (typeof iteratee === 'function') {
+        var tempArray = collection.map(it => iteratee(it))
+      }
 
+      for (var i = 0; i < tempArray.length; i++) {
+        if (!(tempArray[i] in map)) {
+          map[String(tempArray[i])] = 0
+        }
+        map[String(tempArray[i])]++
+      }
+
+      return map
     },
 
-  ervey:
+  every:
     function (collection, predicate = identity) {
       var len = collection.length
       for (var i = 0; i < len; i++) {
@@ -434,7 +448,143 @@ var dongyuenan = {
   filter:
     function (collection, predicate = identity) {
 
-    }
+    },
+
+  find:
+    function (collection, predicate = identity, fromIndex = 0) {
+
+    },
+
+  flatMap:
+    function (collection, predicate = identity) {
+      var result = []
+      var tempArray = []
+      var len = collection.length
+      for (var i = 0; i < len; i++) {
+        tempArray.push(predicate(collection[i], index, collection))
+        result.push(...tempArray)
+        tempArray = []
+      }
+
+      return result
+    },
+
+  flatMapDepth:
+    function (collection, iteratee = identity, depth = 1) {
+      var flatmap = this.flatMap(collection, iteratee)
+      return this.flattenDepth(flatmap, depth = 1)
+    },
+
+  forEach:
+    function (collection, iteratee = identity) {
+      var len = collection.length
+      for (var i = 0; i < len; i++) {
+        iteratee(collection[i], i, collection)
+      }
+    },
+
+  groupBy:
+    function (collection, iteratee = identity) {
+      var map = {}
+      var tempArray = []
+      if (Array.isArray(iteratee)) {
+
+      } else if (typeof iteratee === 'function') {
+
+      } else if (typeof iteratee === 'object') {
+
+      } else if (typeof iteratee === 'string') {
+
+      }
+
+
+    },
+
+  includes:
+    function (collection, value, fromIndex = 0) {
+      var len = collection.length
+      if (Array.isArray(collection)) {
+        for (var i = fromIndex; i < len; i++) {
+          if (collection[i] == value) {
+            return true
+          }
+        }
+        return false
+      } else if (typeof collection === 'object') {
+        for (var key in collection) {
+          if (collection[key] === value) {
+            return true
+          }
+        }
+        return fasle
+      } else if (typeof collection === 'string') {
+        if (collection.indexOf(value) === -1) {
+          return false
+        }
+        return true
+      }
+    },
+
+  keyBy:
+    function (collection, iteratee = identity) {
+
+    },
+
+  map:
+    function (collection, iteratee = identity) {
+      var result = []
+      if (Array.isArray(collection)) {
+        var len = collection.length
+        for (var i = 0; i < len; i++) {
+          var num = iteratee(collection[i], i, collection)
+          result.push(num)
+        }
+        return result
+      } else if (typeof collection === 'object') {
+        if (typeof iteratee === 'function') {
+          for (var key in collection) {
+            var num = iteratee(collection[key], key, collection)
+            result.push(num)
+          }
+          return result
+        }
+        // else if (typeof iteratee === 'string') {
+        //   for (var key in collection) {
+        //     if (collection[key] === iteratee) {
+        //       result.push(collection[key])
+        //     }
+        //   }
+        //   return result
+        // }
+      }
+    },
+
+  partition:
+    function (collection, predicate = identity) {
+      var result = []
+      var trueArray = []
+      var falseArray = []
+      if (Array.isArray(collection)) {
+
+      } else if (typeof collection === 'object') {
+        for (var key in collection) {
+          var num = predicate(collection[key])
+          if (num) {
+            trueArray.push(num)
+          } else if (!num) {
+            falseArray.push(num)
+          }
+        }
+        result.push(trueArray)
+        result.push(falseArray)
+        return result
+      }
+    },
+
+
+
+
+
 
 
 
