@@ -151,11 +151,7 @@ var dongyuenan = {
 
   flattenDeep:    /**递归为一维数组 */
     function (ary) {
-      var res = []
-      var hasArrayInArray = false   //标记array中还有没有数组
-      for (var i = 0; i < ary.length; i++) {
-
-      }
+      return this.flattenDepth(ary)
     },
 
   flattenDepth:   /**根据 depth 递归减少 array 的嵌套层级 */
