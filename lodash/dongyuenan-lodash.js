@@ -617,7 +617,7 @@ var dongyuenan = {
           }
         } else if (typeof pre == 'object') {
           for (var key in pre) {
-            if (collection[i][key] != pre[key]) {
+            if (collection[i][key] == false && pre[key] == true) {
               result.push(collection[i])
             }
           }
