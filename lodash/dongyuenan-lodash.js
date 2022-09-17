@@ -683,5 +683,102 @@ var dongyuenan = {
 
 
 
+  isNil:
+    function (value) {
+      return value == null || value == undefined
+    },
+
+  isNull:
+    function (value) {
+      return value == null
+    },
+
+  isNumber:
+    function (value) {
+      return typeof (value) == 'number'
+    },
+
+  isObject:
+    function (value) {
+      return value != null && (typeof value == 'object' || typeof value == 'function')
+    },
+
+  isRegExp:
+    function (value) {
+
+    },
+
+  isString:
+    function (value) {
+      return typeof value == 'string'
+    },
+
+  isUndefined:
+    function (value) {
+      return typeof value == 'undefined'
+    },
+
+  toArray:
+    function (value) {
+      if (typeof value == 'object') {
+        var result = []
+        for (var key in value) {
+          result.push(value[key])
+        }
+        return result
+      } else if (typeof value == 'string') {
+        return value.split('')
+      } else if (typeof value == 'number' || value == null) {
+        return []
+      }
+    },
+
+  ceil:
+    function (number, precision = 0) {
+
+    },
+
+  max:
+    function (array) {
+      if (array.length == 0) {
+        return undefined
+      }
+      for (var i = 0; i < array.length; i++) {
+        var max = -Infinity
+        if (array[i] > max) {
+          max = array[i]
+        }
+      }
+      return max
+    },
+
+  maxBy:
+    function (array, iteratee) {
+      if (typeof iteratee == 'string') {
+
+      }
+    },
+
+  min:
+    function (array) {
+      if (array.length == 0) {
+        return undefined
+      }
+      for (var i = 0; i < array.length; i++) {
+        var min = Infinity
+        if (array[i] < min) {
+          min = array[i]
+        }
+      }
+      return min
+    },
+
+
+
+
+
+
+
+
 
 }
