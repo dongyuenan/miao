@@ -764,8 +764,8 @@ var dongyuenan = {
       if (array.length == 0) {
         return undefined
       }
+      var min = Infinity
       for (var i = 0; i < array.length; i++) {
-        var min = Infinity
         if (array[i] < min) {
           min = array[i]
         }
