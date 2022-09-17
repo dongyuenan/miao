@@ -114,10 +114,26 @@ var dongyuenan = {
     },
 
   findIndex:
-    function (ary, predicate) {
-      for (var i = 0; i < ary.length; i++) {
-        if (predicate(ary[i])) {
-          return i
+    function (ary, pre, Index = 0) {
+      for (var i = Index; i < ary.length; i++) {
+        if (pre instanceof Array) {
+          if (ary[i][pre[0]] == pre[1]) {
+            return i
+          }
+        } else if (typeof pre == 'function') {
+          if (pre(ary[i])) {
+            return i
+          }
+        } else if (typeof pre == 'object') {
+          var a = JSON.stringify(ary[i])
+          var b = JSON.stringify(pre)
+          if (a == b) {
+            return i
+          }
+        } else if (typeof pre == 'string') {
+          if (ary[i][pre] == true) {
+            return i
+          }
         }
       }
       return -1
@@ -157,28 +173,23 @@ var dongyuenan = {
 
   flattenDepth:   /**根据 depth 递归减少 array 的嵌套层级 */
     function (ary, depth = 1) {
-      for (var k = 0; k < depth; k++) {
-        //从这
-        var res = []
-        var hasArrayInArray = false   //标记array中还有没有数组
-        for (var i = 0; i < ary.length; i++) {
-          var item = ary[i]
-          if (Array.isArray(item)) {
-            hasArrayInArray = true
-            for (var j = 0; j < item.length; j++) {
-              res.push(item[j])
-            }
-          } else {
-            res.push(item)
-          }
-        }
-        if (!hasArrayInArray) {  //如果array中不再有数组，则可以不继续降维了
-          break
-        }
-        //到这，会把array降低一个维度，并将结果放入result上
-        ary = res
+      if (depth == 0) {
+        return ary.slice()
       }
-      return res
+
+      var result = []
+      for (var i = 0; i < ary.length; i++) {
+        var item = ary[i]
+        if (Array.isArray(item)) {
+          var flattedItem = this.flattenDepth(item, depth - 1)
+          for (var j = 0; j < flattedItem.length; j++) {
+            result.push(flattedItem[j])
+          }
+        } else {
+          result.push(item)
+        }
+      }
+      return result
     },
 
   fromPairs:
@@ -580,6 +591,88 @@ var dongyuenan = {
         return result
       }
     },
+
+  reduce:
+    function (collection, iteratee = identity, accumulator) {
+
+    },
+
+  reduceRight:
+    function (collection, iteratee = identity, accumulator) {
+
+    },
+
+  reject:
+    function (collection, pre) {
+      var result = []
+      var len = collection.length
+      for (var i = 0; i < len; i++) {
+        if (pre instanceof Array) {
+          if (collection[i][pre[0]] != pre[1]) {
+            result.push(collection[i])
+          }
+        } else if (typeof pre == 'function') {
+          if (!pre(collection[i])) {
+            result.push(collection[i])
+          }
+        } else if (typeof pre == 'object') {
+          for (var key in pre) {
+            if (collection[i][key] != pre[key]) {
+              result.push(collection[i])
+            }
+          }
+        } else if (typeof pre == 'string') {
+          if (collection[i][pre] == false) {
+            result.push(collection[i])
+          }
+        }
+      }
+      return result
+    },
+
+  sample:
+    function (collection) {
+      var len = collection.length
+      var randomIndex = Math.floor(Math.random() * len)
+      return collection[randomIndex]
+    },
+
+  shuffle:
+    function (collection) {
+      var result = []
+      var len = collection.length
+      while (result.length < len) {
+        var randomIndex = Math.floor(Math.random() * len)
+        var num = collection[randomIndex]
+        if (!num) {
+          result.push(num)
+        } else if (num) {
+          continue
+        }
+      }
+      return result
+    },
+
+  size:
+    function (collection) {
+      if (Array.isArray(collection)) {
+        return collection.length
+      } else if (typeof collection == 'string') {
+        return collection.length
+      } else if (typeof collection == 'object') {
+        var count = 0
+        for (var key in collection) {
+          count++
+        }
+        return count
+      }
+    },
+
+  some:
+    function (collection, pre) {
+
+    },
+
 
 
 
