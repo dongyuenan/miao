@@ -644,9 +644,9 @@ var dongyuenan = {
       while (result.length < len) {
         var randomIndex = Math.floor(Math.random() * len)
         var num = collection[randomIndex]
-        if (!num) {
+        if (result.indexOf(num) === -1) {
           result.push(num)
-        } else if (num) {
+        } else {
           continue
         }
       }
@@ -690,7 +690,7 @@ var dongyuenan = {
 
   isNull:
     function (value) {
-      if (value == undefined) {
+      if (value === undefined) {
         return false
       }
       return value == null
@@ -746,8 +746,8 @@ var dongyuenan = {
       if (array.length == 0) {
         return undefined
       }
+      var max = -Infinity
       for (var i = 0; i < array.length; i++) {
-        var max = -Infinity
         if (array[i] > max) {
           max = array[i]
         }
@@ -776,7 +776,23 @@ var dongyuenan = {
       return min
     },
 
+  round:
+    function (number, precision = 0) {
 
+    },
+
+  sumBy:
+    function (array, iteratee = identity) {
+      var sum = 0
+      for (var i = 0; i < array.length; i++) {
+        if (typeof iteratee == 'string') {
+          sum += array[i][iteratee]
+        } else if (typeof iteratee == 'function') {
+          sum += iteratee(array[i])
+        }
+      }
+      return sum
+    },
 
 
 
