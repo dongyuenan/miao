@@ -51,20 +51,14 @@ var dongyuenan = {
 
   difference:
     function (ary, val) {
-      var res = []
+      var result = []
+      var vals = val.flat()
       for (var i = 0; i < ary.length; i++) {
-        for (var j = 0; j < val.length;) {
-          var a = ary[i]
-          var b = val[j]
-          if (a != b) {
-            j++
-          } else {
-            break
-          }
+        if (vals.indexOf(ary[i]) == -1) {
+          result.push(ary[i])
         }
-        res.push(a)
       }
-      return res
+      return result
     },
 
   differenceBy:
@@ -680,8 +674,71 @@ var dongyuenan = {
 
 
 
+  //语言
+  isArray:
+    function (value) {
+      return Array.isArray(value)
+    },
 
+  isBoolean:
+    function (value) {
+      if (value === true || value === false) {
+        return true
+      }
+      return false
+    },
 
+  isDate:
+    function (value) {
+      return value instanceof Date
+    },
+
+  isElement:
+    function (value) {
+
+    },
+
+  isEmpty:
+    function (value) {
+
+    },
+
+  isEqual:
+    function (value, other) {
+
+    },
+
+  isError:
+    function (value) {
+      return value instanceof Error
+    },
+
+  isFinite:
+    function (value) {
+
+    },
+
+  isFunction:
+    function (value) {
+      return value instanceof Function
+    },
+
+  isMatch:
+    function (object, source) {
+      for (var k in object) {
+        for (var k in source) {
+          if (object[k] == source[k]) {
+            return true
+          }
+        }
+      }
+      return false
+    },
+
+  isNaN:
+    function (value) {
+      return Number.isNaN(value)
+    },
 
   isNil:
     function (value) {
@@ -736,6 +793,9 @@ var dongyuenan = {
       }
     },
 
+
+
+  //数学
   ceil:
     function (number, precision = 0) {
 
@@ -757,9 +817,27 @@ var dongyuenan = {
 
   maxBy:
     function (array, iteratee) {
-      if (typeof iteratee == 'string') {
-
+      if (typeof iteratee == 'function') {
+        var signMax = iteratee(array[0])
+        var max = array[0]
+        for (var i = 1; i < array.length; i++) {
+          if (iteratee(array[i]) > signMax) {
+            signMax = iteratee(array[i])
+            max = array[i]
+          }
+        }
+      } else if (typeof iteratee == 'string') {
+        var flagMax = array[0][iteratee]
+        var max = array[0]
+        for (var i = 1; i < array.length; i++) {
+          if (array[i][iteratee] > flagMax) {
+            flagMax = array[i][iteratee]
+            max = array[i]
+          }
+        }
       }
+
+      return max
     },
 
   min:
@@ -773,6 +851,31 @@ var dongyuenan = {
           min = array[i]
         }
       }
+      return min
+    },
+
+  minBy:
+    function (array, iteratee) {
+      if (typeof iteratee == 'function') {
+        var signMin = iteratee(array[0])
+        var min = array[0]
+        for (var i = 1; i < array.length; i++) {
+          if (iteratee(array[i]) < signMin) {
+            signMin = iteratee(array[i])
+            min = array[i]
+          }
+        }
+      } else if (typeof iteratee == 'string') {
+        var flagMin = array[0][iteratee]
+        var min = array[0]
+        for (var i = 1; i < array.length; i++) {
+          if (array[i][iteratee] > flagMin) {
+            flagMin = array[i][iteratee]
+            min = array[i]
+          }
+        }
+      }
+
       return min
     },
 
@@ -794,7 +897,11 @@ var dongyuenan = {
       return sum
     },
 
+  //数字
+  random:
+    function random(lower = 0, upper = 1, floating) {
 
+    },
 
 
 
