@@ -50,7 +50,7 @@ var dongyuenan = {
     },
 
   difference:
-    function (ary, val) {
+    function (ary, ...val) {
       var result = []
       var vals = val.flat()
       for (var i = 0; i < ary.length; i++) {
@@ -337,8 +337,26 @@ var dongyuenan = {
     },
 
   unionBy:
-    function (arrays, iteratee) {
+    function (...arys) {
+      var temp = []
+      var result = []
+      var iteratee = arys[arys.length - 1]
+      for (var i = 0; i < arys.length - 1; i++) {
+        for (var j = 0; j < arys[i].length; j++) {
+          if (typeof iteratee == 'function') {
+            var num = iteratee(arys[i][j])
+          }
+          if (typeof iteratee == 'string') {
+            var num = arys[i][j][iteratee]
+          }
+          if (temp.indexOf(num) == -1) {
+            temp.push(num)
+            result.push(arys[i][j])
+          }
+        }
+      }
 
+      return result
     },
 
   uniq:
@@ -358,7 +376,23 @@ var dongyuenan = {
 
   uniqBy:
     function (ary, iteratee) {
+      var temp = []
+      var result = []
+      for (var i = 0; i < ary.length; i++) {
+        if (typeof iteratee == 'function') {
+          var num = iteratee(ayr[i])
+        }
+        if (typeof iteratee == 'string') {
+          var num = ary[i][iteratee]
+        }
 
+        if (temp.indexOf(num) == -1) {
+          temp.push(num)
+          result.push(ary[i])
+        }
+      }
+
+      return result
     },
 
   unzip:
@@ -413,8 +447,18 @@ var dongyuenan = {
     },
 
   zip:
-    function (...arrays) {
+    function (...arys) {
+      var result = []
+      var temp = []   //当作中间记录数组
+      for (var i = 0; i < arys[0].length; i++) {
+        for (var j = 0; j < arys.length; j++) {
+          temp.push(arys[j][i])
+        }
+        result.push(temp)
+        temp = []
+      }
 
+      return result
     },
 
 
@@ -869,7 +913,7 @@ var dongyuenan = {
         var flagMin = array[0][iteratee]
         var min = array[0]
         for (var i = 1; i < array.length; i++) {
-          if (array[i][iteratee] > flagMin) {
+          if (array[i][iteratee] < flagMin) {
             flagMin = array[i][iteratee]
             min = array[i]
           }
@@ -901,6 +945,64 @@ var dongyuenan = {
   random:
     function random(lower = 0, upper = 1, floating) {
 
+    },
+
+  //对象
+  assignIn:
+    function (object, sources) {
+
+    },
+
+  defaults:
+    function (object, ...sources) {
+      var map = new Map()
+      var aryObj = [...sources]
+      for (var key in object) {
+        if (!(key in map)) {
+          map.set(key, object[key])
+        }
+      }
+
+      for (var i = 0; i < aryObj.length; i++) {
+        for (var key in aryObj[i]) {
+          if (map.has(key) == false) {
+            map.set(key, aryObj[i][key])
+          }
+        }
+      }
+
+      return map
+    },
+
+  findKey:
+    function (object, predicate) {
+      if (typeof predicate == 'function') {
+        for (var key in object) {
+          if (predicate(object[key])) {
+            return key
+          }
+        }
+      } else if (typeof predicate == 'object') {
+        for (var key in object) {
+          if (object[key] === predicate) {
+            return key
+          }
+        }
+      } else if (Array.isArray(predicate)) {
+        for (var key in object) {
+          if (key[predicate[0]] == predicate[1]) {
+            return key
+          }
+        }
+      } else if (typeof predicate == 'string') {
+        for (var key in object) {
+          if (key[predicate] == true) {
+            return key
+          }
+        }
+      }
+
+      return undefined
     },
 
 
