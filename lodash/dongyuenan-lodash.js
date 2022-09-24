@@ -380,7 +380,7 @@ var dongyuenan = {
       var result = []
       for (var i = 0; i < ary.length; i++) {
         if (typeof iteratee == 'function') {
-          var num = iteratee(ayr[i])
+          var num = iteratee(ary[i])
         }
         if (typeof iteratee == 'string') {
           var num = ary[i][iteratee]
@@ -486,22 +486,107 @@ var dongyuenan = {
   every:
     function (collection, predicate = identity) {
       var len = collection.length
-      for (var i = 0; i < len; i++) {
-        if (predicate(ary[i], index, ary) == false) {
-          return false
+      if (typeof predicate == 'function') {
+        for (var i = 0; i < len; i++) {
+          if (!predicate(collection[i])) {
+            return false
+          }
+        }
+      } else if (Array.isArray(predicate)) {
+        for (var i = 0; i < len; i++) {
+          if (collection[i][predicate[0]] != predicate[1]) {
+            return false
+          }
+        }
+      } else if (typeof predicate == 'object') {
+        for (var p in collection) {
+          if (((p in predicate) == false)) {
+            return false
+          }
+          if (((p in predicate) == false)) {
+            if (collection[p] != predicate[p]) {
+              return false
+            }
+          }
+        }
+      } else if (typeof predicate == 'string') {
+        for (var i = 0; i < len; i++) {
+          if (collection[i][predicate] == false) {
+            return false
+          }
         }
       }
+
       return true
     },
 
   filter:
     function (collection, predicate = identity) {
+      var result = []
+      var len = collection.length
+      for (var i = 0; i < len; i++) {
+        if (Array.isArray(predicate)) {
+          if (collection[i][predicate[0]] == predicate[1]) {
+            result.push(collection[i])
+          }
+        } else if (typeof predicate == 'function') {
+          if (predicate(collection[i])) {
+            result.push(collection[i])
+          }
+        } else if (typeof predicate == 'object') {
+          var flag = true
+          for (var key in predicate) {
+            if ((key in collection[i]) && predicate[key] == collection[i][key]) {
+              continue
+            } else {
+              flag = false
+            }
+          }
+          if (flag) {
+            result.push(collection[i])
+          }
+        } else if (typeof predicate == 'string') {
+          if ((predicate in collection[i]) && collection[i][predicate] == true) {
+            result.push(collection[i])
+          }
+        }
+      }
 
+      return result
     },
 
   find:
     function (collection, predicate = identity, fromIndex = 0) {
+      var len = collection.length
+      for (var i = fromIndex; i < len; i++) {
+        if (Array.isArray(predicate)) {
+          if (collection[i][predicate[0]] == predicate[1]) {
+            return collection[i]
+          }
+        } else if (typeof predicate == 'function') {
+          if (predicate(collection[i])) {
+            return collection[i]
+          }
+        } else if (typeof predicate == 'object') {
+          var flag = true
+          for (var key in predicate) {
+            if ((key in collection[i]) && collection[i][key] == predicate[key]) {
+              continue
+            } else {
+              flag = false
+            }
+          }
+          if (flag) {
+            return collection[i]
+          }
+        } else if (typeof predicate == 'string') {
+          if (collection[i][predicate] == true) {
+            return collection[i]
+          }
+        }
+      }
 
+      return undefined
     },
 
   flatMap:
@@ -525,28 +610,50 @@ var dongyuenan = {
     },
 
   forEach:
-    function (collection, iteratee = identity) {
-      var len = collection.length
-      for (var i = 0; i < len; i++) {
-        iteratee(collection[i], i, collection)
+    function (collection, action) {
+      if (Array.isArray(collection)) {
+        var len = collection.length
+        for (var i = 0; i < len; i++) {
+          action(collection[i], i, collection)
+        }
       }
+      if (typeof collection == 'object') {
+        for (var key in collection) {
+          action(collection[key], key, collection)
+        }
+      }
+
+      return collection
     },
 
   groupBy:
     function (collection, iteratee = identity) {
       var map = {}
-      var tempArray = []
-      if (Array.isArray(iteratee)) {
-
-      } else if (typeof iteratee === 'function') {
-
-      } else if (typeof iteratee === 'object') {
-
+      var len = collection.length
+      if (typeof iteratee === 'function') {
+        for (var i = 0; i < len; i++) {
+          var key = iteratee(collection[i])
+          if (key in map) {
+            map[key].push(collection[i])
+          } else {
+            map[key] = [collection[i]]
+          }
+        }
       } else if (typeof iteratee === 'string') {
-
+        for (var i = 0; i < len; i++) {
+          var flagLength = 0
+          for (var j = 0; j < collection[i].length; j++) {
+            flagLength++
+          }
+          if (flagLength in map) {
+            map[flagLength].push(collection[i])
+          } else {
+            map[flagLength] = [collection[i]]
+          }
+        }
       }
 
-
+      return map
     },
 
   includes:
@@ -576,7 +683,27 @@ var dongyuenan = {
 
   keyBy:
     function (collection, iteratee = identity) {
+      var map = {}
+      var len = collection.length
+      for (var i = 0; i < len; i++) {
+        if (typeof iteratee == 'function') {
+          var key = iteratee(collection[i])
+          if (key in map) {
+            map[key] = collection[i]
+          } else {
+            map[key] = collection[i]
+          }
+        } else if (typeof iteratee == 'string') {
+          var key = collection[i][iteratee]
+          if (key in map) {
+            map[key] = collection[i]
+          } else {
+            map[key] = collection[i]
+          }
+        }
+      }
 
+      return map
     },
 
   map:
