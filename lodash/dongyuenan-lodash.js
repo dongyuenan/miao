@@ -1235,7 +1235,19 @@ var dongyuenan = {
       return value
     },
 
-
+  matches:
+    function (source) {
+      return function (obj) {
+        for (var key of Object.keys(source)) {
+          if (!(key in obj)) {
+            return false
+          } else if (obj[key] !== source[key]) {
+            return false
+          }
+        }
+        return true
+      }
+    },
 
 
 
