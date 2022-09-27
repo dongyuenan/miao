@@ -712,27 +712,26 @@ var dongyuenan = {
       if (Array.isArray(collection)) {
         var len = collection.length
         for (var i = 0; i < len; i++) {
-          var num = iteratee(collection[i], i, collection)
-          result.push(num)
+          if (typeof iteratee == 'function') {
+            var num = iteratee(collection[i], i, collection)
+            result.push(num)
+          } else if (typeof iteratee == 'string') {   //没搞懂
+
+          }
         }
-        return result
       } else if (typeof collection === 'object') {
-        if (typeof iteratee === 'function') {
-          for (var key in collection) {
+        for (var key in collection) {
+          if (typeof iteratee === 'function') {
             var num = iteratee(collection[key], key, collection)
             result.push(num)
+          } else if (typeof iteratee == 'string') {
+            if (collection[key] == iteratee) {
+              result.push(collection[key])
+            }
           }
-          return result
         }
-        // else if (typeof iteratee === 'string') {
-        //   for (var key in collection) {
-        //     if (collection[key] === iteratee) {
-        //       result.push(collection[key])
-        //     }
-        //   }
-        //   return result
-        // }
       }
+      return result
     },
 
   partition:
@@ -740,31 +739,78 @@ var dongyuenan = {
       var result = []
       var trueArray = []
       var falseArray = []
-      if (Array.isArray(collection)) {
-
-      } else if (typeof collection === 'object') {
-        for (var key in collection) {
-          var num = predicate(collection[key])
-          if (num) {
-            trueArray.push(num)
-          } else if (!num) {
-            falseArray.push(num)
+      var len = collection.length
+      for (var i = 0; i < len; i++) {
+        var item = collection[i]
+        if (typeof predicate == 'function') {
+          if (predicate(item)) {
+            trueArray.push(item)
+          } else {
+            falseArray.push(item)
+          }
+        } else if (Array.isArray(predicate)) {
+          if (item[predicate[0]] == predicate[1]) {
+            trueArray.push(item)
+          } else {
+            falseArray.push(item)
+          }
+        } else if (typeof predicate == 'object') {
+          var flag = true
+          for (var key in predicate) {
+            if ((key in item) && predicate[key] == item[key]) {
+              flag = true
+            } else {
+              flag = false
+              break
+            }
+          }
+          if (flag) {
+            trueArray.push(item)
+          } else {
+            falseArray.push(item)
+          }
+        } else if (typeof predicate == 'string') {
+          if (item[predicate] == true) {
+            trueArray.push(item)
+          } else {
+            falseArray.push(item)
           }
         }
-        result.push(trueArray)
-        result.push(falseArray)
-        return result
       }
+      result.push(trueArray)
+      result.push(falseArray)
+
+      return result
     },
 
-  reduce:
-    function (collection, iteratee = identity, accumulator) {
+  reduce:  //--------------
+    function (collection, iteratee, accumulator) {
+      var start = 0
+      if (accumulator == undefined) {
+        accumulator = collection[0]
+        start = 1
+      }
 
+      if (Array.isArray(collection)) {
+        for (var i = start; i < collection.length; i++) {
+          accumulator = iteratee(accumulator, collection[i], i, collection)
+        }
+      } else {
+        for (var key in collection) {
+          accumulator = iteratee(accumulator, collection[key], key)
+        }
+      }
+
+      return accumulator
     },
 
-  reduceRight:
-    function (collection, iteratee = identity, accumulator) {
+  reduceRight:   //--------------
+    function (collection, iteratee, accumulator) {
+      for (var i = collection.length - 1; i >= 0; i--) {
+        accumulator = iteratee(accumulator, collection[i], i, collection)
+      }
 
+      return accumulator
     },
 
   reject:
@@ -834,8 +880,39 @@ var dongyuenan = {
     },
 
   some:
-    function (collection, pre) {
+    function (collection, predicate) {
+      var len = collection.length
+      for (var i = 0; i < len; i++) {
+        var item = collection[i]
+        if (Array.isArray(predicate)) {
+          if (item[predicate[0]] == predicate[1]) {
+            return true
+          }
+        } else if (typeof predicate == 'function') {
+          if (predicate(item)) {
+            return true
+          }
+        } else if (typeof predicate == 'object') {
+          var flag = true
+          for (var key in predicate) {
+            if ((key in item) && item[key] == predicate[key]) {
+              flag = true
+            } else {
+              flag = false
+              break
+            }
+          }
+          if (flag) {
+            return true
+          }
+        } else if (typeof predicate == 'string') {
+          if (item[predicate] == true) {
+            return true
+          }
+        }
+      }
 
+      return false
     },
 
 
