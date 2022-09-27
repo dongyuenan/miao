@@ -922,7 +922,14 @@ var dongyuenan = {
 
 
 
+
+
   //语言
+  isArguments:
+    function (value) {
+
+    },
+
   isArray:
     function (value) {
       return Array.isArray(value)
@@ -930,10 +937,10 @@ var dongyuenan = {
 
   isBoolean:
     function (value) {
-      if (value === true || value === false) {
-        return true
+      if (value == null || value == undefined) {
+        return false
       }
-      return false
+      return Object.getPrototypeOf(value) === Boolean.prototype
     },
 
   isDate:
@@ -963,7 +970,7 @@ var dongyuenan = {
 
   isFinite:
     function (value) {
-
+      return Number.isFinite(value)
     },
 
   isFunction:
@@ -1013,7 +1020,7 @@ var dongyuenan = {
 
   isRegExp:
     function (value) {
-
+      return value instanceof RegExp
     },
 
   isString:
@@ -1211,6 +1218,35 @@ var dongyuenan = {
 
 
 
+
+
+
+
+
+
+
+
+  //实用函数
+
+
+
+  identity:
+    function (value) {
+      return value
+    },
+
+
+
+
+
+  times:
+    function (n, iteratee) {
+      var result = []
+      for (var i = 0; i < n; i++) {
+        result.push(iteratee(i))
+      }
+      return result
+    },
 
 
 }
